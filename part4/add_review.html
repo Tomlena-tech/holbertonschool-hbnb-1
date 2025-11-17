@@ -5,21 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Review</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="pictures/icon.png">
+
 </head>
 <body>
+    <!--EN TETE-->
+    <header>
+        <img src="pictures/icon.png" alt="Logo HBNB" class="logo">    
+        <nav>
+          <a href="index.html">Home</a>
+        </nav>
+        <a href="login.html" class="login-button">Login</a>
+
+    </header>
+    <!-- PARTIE PRINCIPALE -->
     <main>
+        <h1>Add a Review</h1>
         <!-- Add something to idfentify the place you're reviewing -->
-        <form id="review-form">
-            <h2>Add a Review</h2>
-            <label for="review">Your Review:</label>
-            <textarea id="review" name="review" required></textarea>
-            <label for="rating">Rating:</label>
-            <select id="rating" name="rating" required>
-                <!-- Options for rating -->
-            </select>
-            <button type="submit">Submit Review</button>
-        </form>
+        <section id="add-review" class="add-review">
+            <form id="review-form" class="form">
+                <!-- Champ pour le texte du review -->
+                <div class="form-group">
+                    <label for="review">Your Review:</label>
+                    <textarea id="review" name="review" required></textarea>
+                 </div>                  
+                <!-- Champ pour le rating -->
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating" required>
+                        <option value="">Select a rating</option>
+                        <option value="1">⭐ 1 - Poor</option>
+                        <option value="2">⭐⭐ 2 - Fair</option>
+                        <option value="3">⭐⭐⭐ 3 - Good</option>
+                        <option value="4">⭐⭐⭐⭐ 4 - Very Good</option>
+                        <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
+                    </select>
+                </div>
+             <!-- Bouton submit -->
+                <button type="submit" class="submit-button">Submit Review</button>
+            </form>
+        </section>
     </main>
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>&copy; 2024 HBNB. All rights reserved.</p>
+    </footer>
+    
     <script src="scripts.js"></script>
 </body>
 </html>
