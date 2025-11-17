@@ -139,4 +139,154 @@ button[type="submit"]:hover,
 .submit-button:hover {
     background-color: #f40303;
 }
-/* ==================== PLACE CARDS (Index) ==================== */
+/* ==================== PLACE CARDS (Index) Mis en forme appart dispo en facade=========== */ 
+#places-list { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
+.place-card {       /* Style Carte de visite  */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.place-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.place-card h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.place-card .price {
+    color: #27ae60;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+.details-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+.details-button:hover {
+    background-color: #01253d;
+}
+/* ==================== FILTER SECTION ==================== */
+.filter-section {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.filter-section label {
+    margin-right: 1rem;
+    font-weight: bold;
+}
+#price-filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+/* ==================== PLACE DETAILS ==================== */
+.place-details {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.place-info {
+    margin-top: 1.5rem;
+}
+.place-info p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.place-info .host {
+    color: #555;
+}
+
+.place-info .price {
+    color: #27ae60;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.place-info .rating {
+    color: #f39c12;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#place-rating {
+    color: #f39c12;
+}
+
+#rating-value {
+    color: #555;
+    font-weight: normal;
+}
+/* ==================== AMENITIES LIST ==================== */
+
+.amenities-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.amenities-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.amenities-list img {
+    width: 30px;
+    height: 30px;
+}
+/* ==================== REVIEW CARDS ==================== */
+#reviews {
+    margin-top: 2rem;
+}
+.review-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.review-rating {
+    color: #f39c12;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.review-author {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+/* ==================== ADD REVIEW SECTION ==================== */
+.add-review {
+    margin-top: 2rem;
+}
+
+#add-review a {
+    display: inline-block;
+    margin-top: 1rem;
+}
