@@ -2,6 +2,7 @@
   This is a SAMPLE File to get you started. Follow the instructions on the project to complete the tasks. 
   You'll probably need to override some of theese styles.
 */
+/* ==================== GÉNÉRAL ==================== */
 
 * {
     box-sizing: border-box;
@@ -13,20 +14,129 @@
 body {
     background-color: #f4f4f4;
     color: #333;
+    line-height: 1.6;
+
 }
+/* ==================== HEADER ==================== */
 
 header {
-    background-color: #333;
+    background-color: #e4ef17;
     color: #fff;
-    padding: 1rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+nav {
+    flex-grow: 1;
+    text-align: center;
+}    
 
 nav a {
     color: #fff;
     text-decoration: none;
-    margin-left: 1rem;
+    margin: 0 1rem;
+    font-size: 1.1rem;
 }
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: hsl(0, 96%, 48%);
+}
+/* ==================== MAIN ==================== */
 
 main {
     padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+
+
 }
+
+h1 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+/* ==================== FOOTER ==================== */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+/* ==================== FORMS (Login & Add Review)pattern mise en page formulaire=========== */
+form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+textarea {
+    resize: vertical;
+}
+button[type="submit"],
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}   
+button[type="submit"]:hover,
+.submit-button:hover {
+    background-color: #f40303;
+}
+/* ==================== PLACE CARDS (Index) ==================== */

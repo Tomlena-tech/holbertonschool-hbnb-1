@@ -2,35 +2,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <nav>
-        
-    </nav>
-<pictures/icon.png></pictures>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Places</title>
+    <title>HBNB - Places</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="pictures/icon.png">
 </head>
 <body>
+       <!-- EN-TÊTE -->
     <header>
+        <img src="pictures/icon.png" alt="Logo HBNB" class="logo">
         <nav>
-            <a href="login.html" id="login-link">Login</a>
+            <a href="index.html">Home</a>
         </nav>
+        <a href="login.html" id="login-link" class="login-button">Login</a>
     </header>
+     <!-- PARTIE PRINCIPALE -->
     <main>
-        <section id="filter">
-            <label for="price-filter">Max Price:</label>
+        <h1>Available Places</h1>
+        <!-- Filtre par prix -->
+
+     <div class="filter-section">
+            <label for="price-filter">Filter by price:</label>
             <select id="price-filter">
-                <!-- Options will be populated dynamically -->
+                <option value="all">All</option>
+                <option value="10">Up to 10€</option>
+                <option value="50">Up to 50€</option>
+                <option value="100">Up to 100€</option>
             </select>
-        </section>
-        <section id="places-list">
-            <!-- List of places will be populated dynamically -->
-        </section>
+        </div>
+
+        <!-- Liste des places -->
+        <div id="places-list">
+            <!-- Place Card 1 -->
+            <div class="place-card">
+                <h2>Cozy Apartment</h2>
+                <p class="price">Price: 100€ per night</p>
+                <a href="place.html?place_id=1" class="details-button">View Details</a>
+            </div>
+
+            <!-- Place Card 2 -->
+            <div class="place-card">
+                <h2>Beach House</h2>
+                <p class="price">Price: 200€ per night</p>
+                <a href="place.html?place_id=2" class="details-button">View Details</a>
+            </div>
+
+            <!-- Place Card 3 -->
+            <div class="place-card">
+                <h2>Mountain Cabin</h2>
+                <p class="price">Price: 80€ per night</p>
+                <a href="place.html?place_id=3" class="details-button">View Details</a>
+            </div>
+
+            <!-- Place Card 4 -->
+            <div class="place-card">
+                <h2>City Loft</h2>
+                <p class="price">Price: 150€ per night</p>
+                <a href="place.html?place_id=4" class="details-button">View Details</a>
+            </div>
+        </div>
     </main>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>&copy; 2024 HBNB. All rights reserved.</p>
+    </footer>
+
+    <!-- Script JavaScript (pour Task 2+) -->
     <script src="scripts.js"></script>
 </body>
-<footer>
-  "All rights reserved"  
-</footer>
 </html>
