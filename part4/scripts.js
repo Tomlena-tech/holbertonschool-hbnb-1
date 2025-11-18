@@ -175,6 +175,85 @@ function checkAuthentication() {
     }
 }
 
+  // ============================================
+  // TASK 3: PLACE DETAILS PAGE
+  // ============================================
+
+/**
+   * Récupérer l'ID de la place depuis l'URL
+   */
+  function getPlaceIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('place_id');
+  }
+
+  /**
+   * Récupérer les détails d'une place depuis l'API
+   */
+  async function fetchPlaceDetails(placeId, token) {
+      try {
+          const response = await fetch(`${API_BASE_URL}/places/${placeId}`, {
+              method: 'GET',
+              headers: {
+                  'Authorization': `Bearer ${token}`
+              }
+          });
+
+          if (response.ok) {
+              const place = await response.json();
+              console.log('Place details:', place);
+              displayPlaceDetails(place);
+          } else {
+              console.error('Failed to fetch place details');
+          }
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
+/**
+   * Afficher les détails de la place
+   */
+  function displayPlaceDetails(place) {
+      // Remplir les infos de base
+      document.getElementById('place-name').textContent = place.title;
+      document.getElementById('place-host').textContent =
+          `${place.owner.first_name} ${place.owner.last_name}`;
+      document.getElementById('place-price').textContent = place.price;
+      document.getElementById('place-description').textContent = place.description;
+
+      // Afficher les amenities
+      const amenitiesList = document.getElementById('amenities-list');
+      amenitiesList.innerHTML = '';
+      if (place.amenities && place.amenities.length > 0) {
+          place.amenities.forEach(amenity => {
+              const li = document.createElement('li');
+              li.textContent = amenity.name;
+              amenitiesList.appendChild(li);
+          });
+      } else {
+          amenitiesList.innerHTML = '<li>No amenities listed</li>';
+      }
+
+      // Afficher les reviews
+      const reviewsList = document.getElementById('reviews-list');
+      reviewsList.innerHTML = '';
+      if (place.reviews && place.reviews.length > 0) {
+          place.reviews.forEach(review => {
+              const article = document.createElement('article');
+              article.className = 'review-card';
+              article.innerHTML = `
+                  <p class="review-author"><strong>${review.user_id}</strong></p>
+                  <p class="review-rating">Rating: ${'⭐'.repeat(review.rating)} (${review.rating}/5)</p>
+                  <p class="review-comment">${review.comment}</p>
+              `;
+              reviewsList.appendChild(article);
+          });
+      } else {
+          reviewsList.innerHTML = '<p>No reviews yet.</p>';
+      }
+  }
+
+
 /**
  * Fonction pour configurer le filtre par prix
  */
@@ -200,6 +279,30 @@ function setupPriceFilter() {
         });
     }
 }
+      // Gestion de la page place details
+      const placeDetails = document.getElementById('place-details');
+      if (placeDetails) {
+          const placeId = getPlaceIdFromURL();
+          const token = getTokenFromCookie();
+
+          if (placeId) {
+              fetchPlaceDetails(placeId, token);
+          }
+
+          // Afficher le bouton "Add Review" si connecté
+          if (token) {
+              const addReviewSection = document.getElementById('add-review');
+              if (addReviewSection) {
+                  addReviewSection.style.display = 'block';
+                  // Mettre à jour le lien avec le bon place_id
+                  const addReviewLink = addReviewSection.querySelector('a');
+                  if (addReviewLink) {
+                      addReviewLink.href = `add_review.html?place_id=${placeId}`;
+                  }
+              }
+          }
+      }
+
 
 // Event listener pour le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
