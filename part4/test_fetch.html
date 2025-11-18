@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fetch API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .output {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .step {
+            background: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test du Fetch API - Task 2</h1>
+        <p>Cette page vous permet de tester la requête GET vers l'API pour récupérer les places.</p>
+
+        <hr>
+
+        <div>
+            <h3>Configuration:</h3>
+            <label>URL de l'API:</label>
+            <input type="text" id="api-url" value="http://127.0.0.1:5001/api/v1/places">
+
+            <label>Token JWT (laissez vide si pas de token):</label>
+            <input type="text" id="token" placeholder="Optionnel: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Actions:</h3>
+            <button onclick="testFetch()">🚀 Tester la requête GET</button>
+            <button onclick="testFetchDetailed()">🔍 Tester avec détails étape par étape</button>
+            <button onclick="clearOutput()">🗑️ Effacer</button>
+        </div>
+
+        <div id="output" class="output"></div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function log(message, type = 'normal') {
+            const p = document.createElement('div');
+            if (type === 'error') p.className = 'error';
+            if (type === 'success') p.className = 'success';
+            if (type === 'step') p.className = 'step';
+            p.innerHTML = message;
+            output.appendChild(p);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearOutput() {
+            output.innerHTML = '';
+        }
+
+        // Test simple
+        async function testFetch() {
+            clearOutput();
+            const apiUrl = document.getElementById('api-url').value;
+            const token = document.getElementById('token').value;
+
+            log('<h3>🚀 Démarrage du test Fetch API</h3>');
+            log(`<strong>URL:</strong> ${apiUrl}`);
+            log(`<strong>Token:</strong> ${token ? 'Fourni ✓' : 'Non fourni ✗'}`);
+            log('<hr>');
+
+            try {
+                log('📤 Envoi de la requête GET...', 'step');
+
+                const options = {
+                    method: 'GET',
+                    headers: {}
+                };
+
+                if (token) {
+                    options.headers['Authorization'] = `Bearer ${token}`;
+                }
+
+                const response = await fetch(apiUrl, options);
+
+                log(`📥 Réponse reçue!`, 'step');
+                log(`<strong>Status:</strong> ${response.status} ${response.statusText}`);
+                log(`<strong>OK:</strong> ${response.ok}`);
+
+                if (response.ok) {
+                    const places = await response.json();
+                    log('✅ Données reçues avec succès!', 'success');
+                    log(`<strong>Nombre de places:</strong> ${places.length}`);
+                    log('<hr>');
+                    log('<h4>📋 Données JSON:</h4>');
+                    log(`<pre>${JSON.stringify(places, null, 2)}</pre>`);
+                } else {
+                    log(`❌ Erreur HTTP ${response.status}`, 'error');
+                    const errorText = await response.text();
+                    log(`<strong>Message d'erreur:</strong> ${errorText}`, 'error');
+                }
+
+            } catch (error) {
+                log('❌ ERREUR RÉSEAU', 'error');
+                log(`<strong>Message:</strong> ${error.message}`, 'error');
+                log('<hr>');
+                log('💡 <strong>Causes possibles:</strong>', 'step');
+                log('- Le serveur n\'est pas démarré');
+                log('- L\'URL est incorrecte');
+                log('- Problème CORS (Cross-Origin)');
+                log('- Pas de connexion Internet');
+            }
+        }
+
+        // Test détaillé étape par étape
+        async function testFetchDetailed() {
+            clearOutput();
+            const apiUrl = document.getElementById('api-url').value;
+            const token = document.getElementById('token').value;
+
+            log('<h3>🔍 Test détaillé étape par étape</h3>');
+
+            // ÉTAPE 1
+            log('<h4>ÉTAPE 1: Préparation de la requête</h4>', 'step');
+            const options = {
+                method: 'GET',
+                headers: {}
+            };
+            if (token) {
+                options.headers['Authorization'] = `Bearer ${token}`;
+                log('✓ Header Authorization ajouté');
+            }
+            log(`<pre>Options de la requête:\n${JSON.stringify(options, null, 2)}</pre>`);
+
+            // ÉTAPE 2
+            log('<h4>ÉTAPE 2: Envoi avec fetch()</h4>', 'step');
+            log('⏳ En attente de la réponse du serveur...');
+
+            try {
+                const startTime = Date.now();
+                const response = await fetch(apiUrl, options);
+                const endTime = Date.now();
+
+                log(`✓ Réponse reçue en ${endTime - startTime}ms`);
+
+                // ÉTAPE 3
+                log('<h4>ÉTAPE 3: Analyse de la réponse</h4>', 'step');
+                log(`Status: <strong>${response.status}</strong>`);
+                log(`Status Text: <strong>${response.statusText}</strong>`);
+                log(`OK: <strong>${response.ok}</strong>`);
+                log(`Type: <strong>${response.type}</strong>`);
+                log(`URL: <strong>${response.url}</strong>`);
+
+                // ÉTAPE 4
+                log('<h4>ÉTAPE 4: Vérification response.ok</h4>', 'step');
+                if (response.ok) {
+                    log('✅ response.ok = true (status 200-299)', 'success');
+
+                    // ÉTAPE 5
+                    log('<h4>ÉTAPE 5: Conversion JSON</h4>', 'step');
+                    log('⏳ Appel de response.json()...');
+                    const places = await response.json();
+                    log(`✓ JSON converti en objet JavaScript`);
+
+                    // ÉTAPE 6
+                    log('<h4>ÉTAPE 6: Exploitation des données</h4>', 'step');
+                    log(`Type des données: <strong>${Array.isArray(places) ? 'Array' : typeof places}</strong>`);
+                    log(`Nombre d'éléments: <strong>${places.length}</strong>`);
+
+                    log('<h4>📋 Données complètes:</h4>');
+                    log(`<pre>${JSON.stringify(places, null, 2)}</pre>`);
+
+                    // ÉTAPE 7
+                    log('<h4>ÉTAPE 7: Affichage simulé</h4>', 'step');
+                    places.forEach((place, index) => {
+                        log(`<div style="background: #f0f0f0; padding: 10px; margin: 5px 0; border-radius: 5px;">
+                            <strong>Place ${index + 1}:</strong> ${place.title || place.name || 'N/A'}<br>
+                            <strong>Prix:</strong> ${place.price}€/nuit
+                        </div>`);
+                    });
+
+                } else {
+                    log('❌ response.ok = false (status 400+)', 'error');
+                    const errorText = await response.text();
+                    log(`Erreur: ${errorText}`, 'error');
+                }
+
+            } catch (error) {
+                log(`<h4>❌ ERREUR CATCH</h4>`, 'error');
+                log(`<strong>Type:</strong> ${error.name}`, 'error');
+                log(`<strong>Message:</strong> ${error.message}`, 'error');
+                log(`<strong>Stack:</strong><pre>${error.stack}</pre>`, 'error');
+            }
+        }
+
+        // Test automatique au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            log('✅ Page de test chargée!', 'success');
+            log('📝 Configurez l\'URL et le token ci-dessus, puis cliquez sur un bouton de test.');
+        });
+    </script>
+</body>
+</html>
