@@ -1,3 +1,14 @@
+/* ==================== PALETTE DE COULEURS ==================== */
+:root {
+    --primary: #6366F1;      /* Indigo moderne */
+    --secondary: #22D3EE;    /* Cyan */
+    --accent: #F59E0B;       /* Orange doré */
+    --dark: #1F2937;         /* Gris foncé */
+    --light: #F3F4F6;        /* Gris très clair */
+    --success: #10B981;      /* Vert */
+    --danger: #EF4444;       /* Rouge */
+}
+
 /* ==================== GÉNÉRAL ==================== */
 
 * {
@@ -8,15 +19,15 @@
 }
 
 body {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--light);
+    color: var(--dark);
     line-height: 1.6;
 
 }
 /* ==================== HEADER ==================== */
 
 header {
-    background-color: #e4ef17;
+    background-color: var(--primary);
     color: #fff;
     padding: 1rem 2rem;
     display: flex;
@@ -47,7 +58,7 @@ nav a:hover {
 }
 
 .login-button {
-    background-color: #4CAF50;
+    background-color: var(--success);
     color: white;
     padding: 0.5rem 1.5rem;
     text-decoration: none;
@@ -56,11 +67,11 @@ nav a:hover {
 }
 
 .login-button:hover {
-    background-color: hsl(0, 96%, 48%);
+    background-color: var(--secondary);
 }
  nav button {
       background-color: #fff;
-      color: #333;
+      color: var(--dark);
       border: none;
       padding: 0.5rem 1rem;
       margin: 0 0.5rem;
@@ -70,7 +81,8 @@ nav a:hover {
   }
 
   nav button:hover {
-      background-color: #f0f0f0;
+      background-color: var(--secondary);
+      color: white;
   }
 
 /* ==================== MAIN ==================== */
@@ -85,7 +97,7 @@ main {
 }
 
 h1 {
-    color: #333;
+    color: #1ac4f4;
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -97,7 +109,7 @@ h2 {
 }
 /* ==================== FOOTER ==================== */
 footer {
-    background-color: #333;
+    background-color: var(--dark);
     color: #fff;
     text-align: center;
     padding: 1rem;
@@ -136,7 +148,7 @@ textarea {
 }
 button[type="submit"],
 .submit-button {
-    background-color: #4CAF50;
+    background-color: var(--primary);
     color: white;
     padding: 0.8rem 2rem;
     border: none;
@@ -145,10 +157,11 @@ button[type="submit"],
     font-size: 1rem;
     width: 100%;
     margin-top: 1rem;
-}   
+    transition: background-color 0.3s ease;
+}
 button[type="submit"]:hover,
 .submit-button:hover {
-    background-color: #f40303;
+    background-color: var(--secondary);
 }
 /* ==================== PLACE CARDS (Index) Mis en forme appart dispo en facade=========== */ 
 #places-list { 
@@ -187,22 +200,24 @@ button[type="submit"]:hover,
     margin-bottom: 1rem;
 }
 .place-card .price {
-    color: #27ae60;
+    color: var(--success);
     font-size: 1.2rem;
     font-weight: bold;
     margin: 1rem 0;
 }
 .details-button {
     display: inline-block;
-    background-color: #3498db;
+    background-color: var(--primary);
     color: white;
     padding: 0.6rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 1rem;
+    transition: all 0.3s ease;
 }
 .details-button:hover {
-    background-color: #01253d;
+    background-color: var(--secondary);
+    transform: translateY(-2px);
 }
 /* ==================== FILTER SECTION ==================== */
 .filter-section {
@@ -352,7 +367,7 @@ button[type="submit"]:hover,
         position: absolute;
         top: 70px;
         right: 0;
-        background-color: #e4ef17;
+        background-color: var(--primary);
         flex-direction: column;
         width: 200px;
         padding: 10px;
