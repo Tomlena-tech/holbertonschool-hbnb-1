@@ -62,8 +62,8 @@ async function submitReview(placeId, token, comment, rating) {
             window.location.href = `place.html?place_id=${placeId}`;
         } else {
             const errorData = await response.json().catch(() => ({}));
-            console.error('Failed to submit review:', response.status);
-            alert(errorData.message || 'Failed to submit review. Please try again.');
+            console.error('Failed to submit review:', response.status, errorData);
+            alert(errorData.error || errorData.message || 'Failed to submit review. Please try again.');
         }
     } catch (error) {
         console.error('Error submitting review:', error);
