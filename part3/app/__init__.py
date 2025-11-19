@@ -28,7 +28,7 @@ def create_app(config_class=config.DevelopmentConfig):
     jwt.init_app(app)
     db.init_app(app)
     
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     # Configuration de l'API
     authorizations = {
         'apikey': {
