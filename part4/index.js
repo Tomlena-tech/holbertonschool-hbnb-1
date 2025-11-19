@@ -10,9 +10,11 @@
 /**
  * Fonction pour vérifier l'authentification et gérer l'affichage
  */
+
 function checkAuthentication() {
     const token = getCookie('token');
     const loginLink = document.getElementById('login-link');
+    
 
     if (!token) {
         // Utilisateur non connecté
@@ -29,6 +31,9 @@ function checkAuthentication() {
         fetchPlaces(token);
     }
 }
+
+
+
 
 /**
  * Fonction pour récupérer la liste des places depuis l'API
@@ -61,6 +66,20 @@ async function fetchPlaces(token) {
  */
 function displayPlaces(places) {
     const placesList = document.getElementById('places-list');
+    const placeImages = {
+    'Cozy Apartment':
+  'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400',
+        'Beach House':
+  'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=400',
+        'Mountain Cabin':
+  'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=400',
+            'City Loft':
+  'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=400',
+      'Countryside Villa':
+  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400',
+        'Villa Schweppes':
+  'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400'
+  }
 
     // Vider la liste actuelle
     placesList.innerHTML = '';
@@ -71,15 +90,23 @@ function displayPlaces(places) {
         placeCard.className = 'place-card';
         placeCard.dataset.price = place.price;  // Stocker le prix pour le filtre
 
+        const imageUrl =
+        placeImages[place.title] ||
+        'pictures/default.jpg';
+
         placeCard.innerHTML = `
-            <h2>${place.title}</h2>
-            <p class="price">Price: ${place.price}€ per night</p>
+            <img src="${imageUrl}"
+            alt="${place.title}" 
+            class="place-image">
+                <h2>${place.title}</h2>
+                <p class="price">Price: ${place.price}€ per night</p>
             <a href="place.html?place_id=${place.id}" class="details-button">View Details</a>
         `;
 
         placesList.appendChild(placeCard);
     });
 }
+
 
 /**
  * Fonction pour configurer le filtre par prix

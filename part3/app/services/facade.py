@@ -54,18 +54,22 @@ class HBnBFacade:
         if not user:
             raise KeyError('Invalid input data')
         place_data['owner'] = user
-        amenities = place_data.pop('amenities', None)
-        if amenities:
-            for a in amenities:
-                amenity = self.get_amenity(a['id'])
+        amenity_ids = place_data.pop('amenities', None)
+        amenity_objects = []
+        if amenity_ids:
+            for amenity_id in amenity_ids:
+                amenity = self.get_amenity(amenity_id)
                 if not amenity:
                     raise KeyError('Invalid input data')
+                amenity_objects.append(amenity)
         place = Place(**place_data)
         self.place_repo.add(place)
         user.add_place(place)
-        if amenities:
-            for amenity in amenities:
+        if amenity_objects:
+            for amenity in amenity_objects:
                 place.add_amenity(amenity)
+            from app import db
+            db.session.commit()
         return place
 
     def get_place(self, place_id):

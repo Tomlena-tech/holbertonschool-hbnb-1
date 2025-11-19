@@ -7,14 +7,24 @@
     <title>HBNB - Places</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="pictures/icon.png">
+    <link rel="stylesheet" href="styles/buttons.css">
 </head>
 <body>
        <!-- EN-TÊTE -->
     <header>
         <img src="pictures/icon.png" alt="Logo HBNB" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="window.location.href='login.html'">Login</button>
         </nav>
+
         <a href="login.html" id="login-link" class="login-button">Login</a>
     </header>
      <!-- PARTIE PRINCIPALE -->
@@ -72,5 +82,23 @@
     <!-- Scripts JavaScript -->
     <script src="scripts.js"></script>
     <script src="index.js"></script>
+
+    <!-- Vanta.js Globe Effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script>
+        VANTA.GLOBE({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xe4ef17,
+            backgroundColor: 0x23153c
+        })
+    </script>
 </body>
 </html>

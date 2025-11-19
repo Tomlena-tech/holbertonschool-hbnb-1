@@ -69,16 +69,29 @@ function displayPlaceDetails(place) {
     document.getElementById('place-description').textContent =
         place.description || 'No description available.';
 
-    // Afficher les amenities
-    const amenitiesList = document.getElementById('amenities-list');
-    amenitiesList.innerHTML = '';
+  // Afficher les amenities
+      const amenitiesList = document.getElementById('amenities-list');
+      amenitiesList.innerHTML = '';
 
-    if (place.amenities && place.amenities.length > 0) {
-        place.amenities.forEach(amenity => {
-            const li = document.createElement('li');
-            li.innerHTML = `<span>${amenity.name}</span>`;
-            amenitiesList.appendChild(li);
-        });
+      // Icônes pour les amenities
+      const amenityIcons = {
+          'WiFi': '📶',
+          'Swimming Pool': '🏊',
+          'Parking': '🅿️',
+          'Kitchen': '🍳',
+          'Air Conditioning': '❄️',
+          'TV': '📺',
+          'Heating': '🔥'
+      };
+
+      if (place.amenities && place.amenities.length > 0) {
+          place.amenities.forEach(amenity => {
+              const li = document.createElement('li');
+              const icon = amenityIcons[amenity.name] || '✓';
+              li.innerHTML = `<span>${icon} ${amenity.name}</span>`;
+              amenitiesList.appendChild(li);
+          });
+
     } else {
         amenitiesList.innerHTML = '<li><span>No amenities listed</span></li>';
     }

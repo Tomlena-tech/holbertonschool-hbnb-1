@@ -133,3 +133,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ============================================
+// MENU HAMBURGER TOGGLE
+// ============================================
+
+/**
+ * Toggle le menu hamburger (responsive)
+ */
+function toggleMenu() {
+    const nav = document.getElementById('nav-menu');
+    const toggle = document.querySelector('.menu-toggle');
+
+    if (nav && toggle) {
+        nav.classList.toggle('active');
+        toggle.classList.toggle('active');
+    }
+}
