@@ -94,11 +94,16 @@ function displayPlaces(places) {
         placeImages[place.title] ||
         'pictures/default.jpg';
 
+         // Ajoute de la localisation maps sur les card
         placeCard.innerHTML = `
             <img src="${imageUrl}"
             alt="${place.title}" 
             class="place-image">
                 <h2>${place.title}</h2>
+                <p class="location">
+                <a href="https://www.google.com/maps?q=${place.latitude},${place.longitude}" target="_blank">📍 View on map
+                </a> 
+                </p>
                 <p class="price">Price: ${place.price}€ per night</p>
             <a href="place.html?place_id=${place.id}" class="details-button">View Details</a>
         `;

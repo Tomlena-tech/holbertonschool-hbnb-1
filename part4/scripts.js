@@ -1,6 +1,5 @@
 /*
-  HBNB - Part 4 JavaScript Common Functions
-  Fonctions partagées par toutes les pages
+  HBNB - Fonctions partagées par toutes les pages
 */
 
 // Configuration de l'API

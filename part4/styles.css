@@ -245,6 +245,19 @@ button[type="submit"]:hover,
     margin-bottom: 2rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.location {
+      color: #6B7280;
+      font-size: 0.9em;
+      margin: 5px 0;
+}
+.location a {
+   text-decoration: none;  
+      color: #22D3EE;  
+  
+}
+      
+
 .place-info {
     margin-top: 1.5rem;
 }
