@@ -221,7 +221,7 @@ button[type="submit"]:hover,
 }
 /* ==================== FILTER SECTION ==================== */
 .filter-section {
-    background-color: white;
+    background-color: transparent;
     padding: 1.5rem;
     border-radius: 10px;
     margin-bottom: 2rem;
